@@ -29,20 +29,24 @@ export const Card = ({ id, contents }) => {
     <img src={cardLogo} className="logo-placeholder" alt="Card option" />
   );
 
-  // 1st if statement
-  // implement card id array membership check
+  console.log(visibleIDs);
+
+  // Checking if the card is visible - show text
   if (visibleIDs.includes(id) || matchedIDs.includes(id)) {
     cardText = contents;
     click = () => {};
   }
-
-  // 2nd if statement
-  // implement card id array membership check
+  
+  // If the card belong to matched pair - change style properly
   if (matchedIDs.includes(id)) {
     cardStyle = 'matched';
+  } 
+  
+  // If two cards are visible and they are no matched - style changed to make their text red
+  if (!matchedIDs.includes(id) && visibleIDs.length === 2) {
+    cardStyle = 'no-match';
   }
 
-  // 3rd if statement
   // implement number of flipped cards check
   if (visibleIDs.length === 2) {
     click = () => {};
