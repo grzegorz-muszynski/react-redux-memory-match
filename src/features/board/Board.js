@@ -1,12 +1,10 @@
 import React from 'react';
 import { CardRow } from './cardRow/CardRow.js';
-// Add import statements below
 import { useSelector } from 'react-redux';
 import { selectBoard } from './boardSlice';
 
 
 export const Board = () => {
-  // Add selected data variable and implement below
   const currentBoard = useSelector(selectBoard);
 
   const numberOfCards = currentBoard.length;
@@ -17,7 +15,6 @@ export const Board = () => {
     const rowCards = [];
     for (let j = 0; j < columns; j++) {
       const cardIndex = row * columns + j;
-      // Implement selected data below
       rowCards.push(currentBoard[cardIndex]);
     }
     return rowCards;

@@ -1,14 +1,13 @@
 import React from 'react';
-
-// Add import statements below
 import { useSelector, useDispatch } from 'react-redux';
 import { 
   selectVisibleIDs, 
   flipCard,
-  selectMatchedIDs
+  selectMatchedIDs,
+  resetCards
 } from '../../boardSlice';
 
-let cardLogo = require("./question-mark-white.png");
+let cardLogo = require("../../../../assets/images/question-mark-white.png");
 
 export const Card = ({ id, contents }) => {
   // Add selected data and dispatch variables below
@@ -16,22 +15,25 @@ export const Card = ({ id, contents }) => {
   const matchedIDs = useSelector(selectMatchedIDs);
   const dispatch = useDispatch();
 
+  let cardStyle = 'resting';
+
   // flip card action
   const flipHandler = (id) => {
-    // Add action dispatch below
     dispatch(flipCard(id));
   };
 
-  let cardStyle = 'resting'
+  // reset
+  const resetHandler = () => {
+    dispatch(resetCards());
+  };
+
   let click = () => flipHandler(id);
-  
+
   let cardText = (
     <img src={cardLogo} className="logo-placeholder" alt="Card option" />
   );
 
-  console.log(visibleIDs);
-
-  // Checking if the card is visible - show text
+  // If the card is visible - show text
   if (visibleIDs.includes(id) || matchedIDs.includes(id)) {
     cardText = contents;
     click = () => {};
@@ -47,9 +49,12 @@ export const Card = ({ id, contents }) => {
     cardStyle = 'no-match';
   }
 
-  // implement number of flipped cards check
+  // Preventing flipping a third card
   if (visibleIDs.length === 2) {
-    click = () => {};
+    click = async () => {
+      resetHandler();
+      dispatch(flipCard(id));
+    }
   }
 
   return (

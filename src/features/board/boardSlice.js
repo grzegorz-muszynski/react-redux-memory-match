@@ -18,21 +18,23 @@ const initialState = [
       case 'board/setBoard':
         let setState = [];
         action.payload.forEach((element, index) => 
-          setState.push({id: index, 
-                        contents: element, 
-                        visible: false, 
-                        matched: false})
+          setState.push({
+            id: index, 
+            contents: element, 
+            visible: false, 
+            matched: false
+          })
         );
         return setState;
+
       case 'board/flipCard':
         let flipState = [...state];
         const cardID = action.payload;
-        flipState[cardID] = {...state[cardID], visible:true}
-        
+        flipState[cardID] = {...state[cardID], visible: true}
         const [index1, index2] = flipState
           .filter(card => card.visible)
           .map(card => card.id);
-        if (index2 !== undefined){
+        if (index2 !== undefined) {
           const card1 = flipState[index1];
           const card2 = flipState[index2];
           if (card1.contents === card2.contents) {
@@ -40,8 +42,8 @@ const initialState = [
             flipState[index2] = {...card2, visible: false, matched: true}
           }
         } 
-  
         return flipState;
+
       case 'board/resetCards':
         return state.map(card => ({...card, visible: false}));
       default:
@@ -71,7 +73,7 @@ const initialState = [
     return words;
   } 
   
-  // action creators
+  // Action creators
   export const setBoard = () => {
     const words = randomWords()
     return {
@@ -93,7 +95,7 @@ const initialState = [
     }
   }
   
-  // Add selector export statments below
+  // Selector export statments below
   export const selectBoard = state => state.board.map(card => ({id: card.id, contents: card.contents}));
   
   export const selectVisibleIDs = state => state.board
