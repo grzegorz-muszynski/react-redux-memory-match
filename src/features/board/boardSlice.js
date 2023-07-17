@@ -105,4 +105,3 @@ const initialState = [
   export const selectMatchedIDs = state => state.board
     .filter(card => card.matched)
     .map(object => object.id)
-  
