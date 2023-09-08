@@ -12,7 +12,7 @@ export const Board = () => {
   const rows = Math.floor(numberOfCards / columns);
 
   // Making an array of indices from one row
-  const getRowCards = (row) => {
+  const getRowCards = (row: any) => {
     const rowCards = [];
     for (let j = 0; j < columns; j++) {
       const cardIndex = row * columns + j;
@@ -21,14 +21,10 @@ export const Board = () => {
     return rowCards;
   };
   
-  // Making an array of all slots elements
+  // Making an array of all slots content elements
   let content = [];
   for (let row = 0; row < rows; row++) {
     const rowCards = getRowCards(row);
-    // console.log(rowCards[1]);
-    // console.log(typeof rowCards[1]);
-    // console.log(typeof rowCards);
-    console.log(typeof rowCards);
 
     content.push(
       <CardRow 
