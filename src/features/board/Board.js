@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardRow } from './cardRow/CardRow.js';
 import { useSelector } from 'react-redux';
-import { selectBoard } from './boardSlice';
+import { selectBoard } from './boardSlice.js';
 
 
 export const Board = () => {

@@ -1,9 +1,8 @@
 import './App.css';
-import React from 'react';
-import { Score } from './features/score/Score.js';
-import { Board } from './features/board/Board.js';
+import { Score } from './features/score/Score';
+import { Board } from './features/board/Board';
 import { useDispatch } from 'react-redux';
-import { setBoard, resetCards } from './features/board/boardSlice.js';
+import { setBoard, resetCards } from './features/board/boardSlice';
 
 
 const App = () => {

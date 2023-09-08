@@ -1,5 +1,4 @@
-import React from 'react';
-import { Card } from './card/Card.js';
+import { Card } from './card/Card';
 
 export const CardRow = ({ cards }) => {
   const content = cards.map(card => 

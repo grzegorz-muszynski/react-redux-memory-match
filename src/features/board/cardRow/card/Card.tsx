@@ -8,8 +8,8 @@ import {
 
 let cardLogo = require("../../../../assets/images/question-mark-white.png");
 
-export const Card = ({ id, contents }) => {
-  // Add selected data and dispatch variables below
+export const Card = ({ id, contents }: { id: number; contents: string }) => {
+  // Getting IDs of both kind of cards
   const visibleIDs = useSelector(selectVisibleIDs);
   const matchedIDs = useSelector(selectMatchedIDs);
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export const Card = ({ id, contents }) => {
   let cardStyle = 'resting';
 
   // flip card action
-  const flipHandler = (id) => {
+  const flipHandler = (id: number) => {
     dispatch(flipCard(id));
   };
 
@@ -28,7 +28,8 @@ export const Card = ({ id, contents }) => {
 
   let click = () => flipHandler(id);
 
-  let cardText = (
+  // cardText can be an jsx element or string
+  let cardText: any = (
     <img src={cardLogo} className="logo-placeholder" alt="Card option" />
   );
 

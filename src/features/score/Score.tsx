@@ -1,14 +1,12 @@
-import React from 'react';
-// Add import statement below
 import { useSelector } from 'react-redux';
 import { selectMatchedIDs } from '../board/boardSlice';
 
 export const Score = () => {
-  // Add selected data variable below
+  // Selector providing array with ids of matched pairs
   const cardsMatched = useSelector(selectMatchedIDs);
 
   return (
-    // implement selected data inside <div>
+    // Displaying quantity of matched cards
     <div className="score-container">Matched: {cardsMatched.length}</div>
   );
 };
