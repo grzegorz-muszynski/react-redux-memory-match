@@ -13,11 +13,12 @@ const initialState = [
   {id: 11, contents: 'react-redux', visible: true, matched: true}, 
 ];
 
-export const boardReducer = (state = initialState, action) => {
+export const boardReducer = (state = initialState, action: {type: string, payload: any}) => {
   switch (action.type) {
     case 'board/setBoard':
-      let setState = [];
-      action.payload.forEach((element, index) => 
+      let setState: any[] = [];
+      // payload should be an array of strings with words on cards
+      action.payload.forEach((element: string, index: number) => 
         setState.push({
           id: index, 
           contents: element, 
@@ -82,26 +83,34 @@ export const setBoard = () => {
   }
 }
 
-export const flipCard = (id) => {
+export const flipCard = (id: number) => {
   return {
     type: 'board/flipCard',
     payload: id
   }
 }
 
-export const resetCards = (indices) => {
+// export const resetCards = (indices) => {
+export const resetCards = () => {
   return {
     type: 'board/resetCards'
   }
 }
 
+interface stateBoardCard {
+  id: number, 
+  contents: string, 
+  visible: boolean, 
+  matched: boolean
+}
+
 // Selector export statments below
-export const selectBoard = state => state.board.map(card => ({id: card.id, contents: card.contents}));
+export const selectBoard = (state: any) => state.board.map((card: stateBoardCard) => ({id: card.id, contents: card.contents}));
 
-export const selectVisibleIDs = state => state.board
-  .filter(card => card.visible)
-  .map(object => object.id)
+export const selectVisibleIDs = (state: any) => state.board
+  .filter((card: stateBoardCard) => card.visible)
+  .map((object: stateBoardCard) => object.id)
 
-export const selectMatchedIDs = state => state.board
-  .filter(card => card.matched)
-  .map(object => object.id)
+export const selectMatchedIDs = (state: any) => state.board
+  .filter((card: stateBoardCard) => card.matched)
+  .map((object: stateBoardCard) => object.id)
