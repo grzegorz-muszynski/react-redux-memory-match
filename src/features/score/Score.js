@@ -9,6 +9,6 @@ export const Score = () => {
 
   return (
     // implement selected data inside <div>
-    <div className="score-container">Matched: {cardsMatched.length}</div>
+    <div className={cardsMatched.length === 12 ? "score-container score-container-win" : "score-container"}>Matched: {cardsMatched.length}{cardsMatched.length === 12 && " - You win!"}</div>
   );
 };
